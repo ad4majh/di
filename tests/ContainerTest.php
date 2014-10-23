@@ -225,4 +225,19 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($bar instanceof Bar);
         $this->assertTrue($bar->baz instanceof Baz);
     }
+
+    public function testSetConfigWithAliasedClasses()
+    {
+        $map = [
+            'baz' => [
+                'object' => 'Assets\OrnoTest\Baz'
+            ]
+        ];
+
+        $container = new Container($map);
+
+        $baz = $container->resolve('baz');
+
+        $this->assertTrue($baz instanceof Baz);
+    }
 }
